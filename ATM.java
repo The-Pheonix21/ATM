@@ -24,8 +24,7 @@ class ATM{
             AtmMainMenu();
           }
         }
-        catch(Exception e)
-           {
+        catch(Exception e){
              System.out.println("\tError Input! Your pin must be a number only.");
            }
 
@@ -50,13 +49,17 @@ class ATM{
                 
         System.out.print(" What would you like to do? ");
         selectMyString = AtmMainRead.nextLine();
+        try {
         selectMyItem = Integer.parseInt(selectMyString);
-        if(selectMyItem>5)
-            {
+        }
+         catch(Exception e){
+             System.out.println("\tUse the numbers provided above. You gibbin!");
+             AtmMainMenu();
+           }
+        if(selectMyItem>5){
                 System.out.println("\tPlease select correct transaction.");
             }  else{
-                switch (selectMyItem)
-                    {
+                switch (selectMyItem){
                        case 1:
                         System.out.println("\tYour balance is: "+myAtmuserdata.getBalance());
                         break;
@@ -65,9 +68,15 @@ class ATM{
                         System.out.println();
                         System.out.print("\tEnter amount of money to withdraw: ");
                         selectMyString = AtmMainRead.nextLine();
-                        double withdraw = Double.parseDouble(selectMyString);
-                        System.out.println("\tAmount to withdraw: "+withdraw +"\n\n");
-                        myAtmuserdata.withdrawMoney(withdraw);
+                        try{
+                            double withdraw = Double.parseDouble(selectMyString);
+                            System.out.println("\tAmount to withdraw: "+withdraw +"\n\n");
+                            myAtmuserdata.withdrawMoney(withdraw);
+                        }
+                       catch(Exception e){
+                            System.out.println("\tNumbers only you you you you .");
+                        }
+                        
                         break;
                        case 3:
                         System.out.println();
